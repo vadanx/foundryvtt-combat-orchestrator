@@ -1,0 +1,44 @@
+{
+  "authors": [
+    {
+      "name": "Vadanx",
+      "email": "andrew@vadanx.dev",
+      "url": "https://vadanx.dev",
+      "discord": "vadanx",
+      "github": "vadanx"
+    }
+  ],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "description": "Foundry VTT module for orchestrating smoother combat encounters.",
+  "download": "#{DOWNLOAD}#",
+  "esmodules": [
+    "scripts/config.js",
+    "scripts/control.js",
+    "scripts/main.js",
+    "scripts/music.js",
+    "scripts/orchestrator.js",
+    "scripts/util.js"
+  ],
+  "id": "vadanx-combat-orchestrator",
+  "library": "false",
+  "license": "LICENSE",
+  "manifest": "#{MANIFEST}#",
+  "readme": "README.md",
+  "relationships": {
+    "requires": [
+      {
+        "id": "socketlib",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "socket": true,
+  "title": "Vadanx's Combat Orchestrator",
+  "url": "#{URL}#",
+  "version": "#{VERSION}#"
+}
