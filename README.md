@@ -4,7 +4,11 @@
 
 ----
 
+<<<<<<< HEAD
 Vadanx's Combat Orchestrator is a Foundry VTT module for orchestrating smoother combat encounters.
+=======
+Foundry VTT module for orchestrating smoother combat encounters.
+>>>>>>> 540cec8 (Initial commit)
 
 It is as easy as selecting your tokens and hitting the combat orchestration control button.
 
