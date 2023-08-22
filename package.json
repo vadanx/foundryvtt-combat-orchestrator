@@ -1,0 +1,20 @@
+{
+  "name": "vadanx-combat-orchestrator",
+  "scripts": {
+    "lint": "npx eslint '*.js' --fix",
+    "copy": "npm run lint && rsync --archive --compress --delete-excluded --exclude='.git' --exclude='node_modules' --verbose ./ ${HOME}/foundrydata/Data/modules/${npm_package_name}",
+    "test": "npm run copy && node ${HOME}/foundryvtt/resources/app/main.js --dataPath=${HOME}/foundrydata"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/vadanx/foundryvtt-combat-orchestrator"
+  },
+  "author": "github.com/vadanx",
+  "devDependencies": {
+    "eslint": "^8.46.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
+}

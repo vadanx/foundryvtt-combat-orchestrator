@@ -1,0 +1,48 @@
+---
+name: Changelog
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false
+
+env:
+  CHANGELOG_COMMIT_MESSAGE: "docs(bot): Updated CHANGELOG"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3.4.0
+
+      - id: tag_version_dry_run
+        if: (!contains(toJSON(github.event.head_commit.message), "${{ env.CHANGELOG_COMMIT_MESSAGE }}"))
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          dry_run: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: update_changelog
+        if: (!contains(toJSON(github.event.head_commit.message), "${{ env.CHANGELOG_COMMIT_MESSAGE }}"))
+        run: |
+          echo \
+          "# ${{ steps.tag_version_dry_run.outputs.new_tag }}
+
+          ${{ steps.tag_version_dry_run.outputs.changelog }}
+          " > "CHANGELOG.d/${{ steps.tag_version_dry_run.outputs.new_tag }}.md"
+
+          echo -n > "CHANGELOG.md" && find "CHANGELOG.d/" -type f -name "*.md" | sort -r | xargs -I {} cat {} >> CHANGELOG.md
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: (!contains(toJSON(github.event.head_commit.message), "${{ env.CHANGELOG_COMMIT_MESSAGE }}"))
+        with:
+          branch: ${{ github.event.pull_request.head.ref }}
+          commit_message: ${{ env.CHANGELOG_COMMIT_MESSAGE }}
+          file_pattern: CHANGELOG\.md CHANGELOG\.d/*
