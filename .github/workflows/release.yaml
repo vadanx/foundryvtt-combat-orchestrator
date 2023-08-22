@@ -1,0 +1,51 @@
+---
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3.4.0
+      - id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - id: sub_manifest_link_version
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: 'module.json'
+        env:
+          DOWNLOAD: "https://github.com/${{ github.repository }}/releases/download/${{ steps.tag_version.outputs.new_tag }}/module.zip"
+          MANIFEST: "https://github.com/${{ github.repository }}/releases/latest/download/module.json"
+          URL: "https://github.com/${{ github.repository }}"
+          VERSION: ${{ steps.tag_version.outputs.new_version }}
+      - run: |
+          zip \
+            --recurse-paths \
+            ./module.zip \
+            module.json \
+            README.md \
+            LICENSE \
+            music/ \
+            scripts/
+      - id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: Release ${{ steps.tag_version.outputs.new_version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './module.json, ./module.zip'
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
