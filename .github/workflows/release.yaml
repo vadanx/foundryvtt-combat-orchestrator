@@ -38,8 +38,8 @@ jobs:
             module.json \
             README.md \
             LICENSE \
-            music/ \
-            scripts/
+            *.js \
+            music/
       - id: create_version_release
         uses: ncipollo/release-action@v1
         with:

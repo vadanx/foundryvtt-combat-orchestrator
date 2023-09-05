@@ -1,9 +1,9 @@
 {
   "name": "vadanx-combat-orchestrator",
-  "version": "1.0",
-  "description": "Foundry VTT module for orchestrating smoother combat encounters.",
   "scripts": {
-    "lint": "npx eslint 'scripts/**/*.js'"
+    "lint": "npx eslint '*.js' --fix",
+    "copy": "npm run lint && rsync --archive --compress --delete-excluded --exclude='.git' --exclude='node_modules' --verbose ./ ${HOME}/foundrydata/Data/modules/${npm_package_name}",
+    "test": "npm run copy && node ${HOME}/foundryvtt/resources/app/main.js --dataPath=${HOME}/foundrydata"
   },
   "repository": {
     "type": "git",
