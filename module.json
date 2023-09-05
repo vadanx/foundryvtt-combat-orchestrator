@@ -16,12 +16,7 @@
   "description": "Foundry VTT module for orchestrating smoother combat encounters.",
   "download": "#{DOWNLOAD}#",
   "esmodules": [
-    "scripts/config.js",
-    "scripts/control.js",
-    "scripts/main.js",
-    "scripts/music.js",
-    "scripts/orchestrator.js",
-    "scripts/util.js"
+    "combat-orchestrator.js"
   ],
   "id": "vadanx-combat-orchestrator",
   "library": "false",
@@ -32,6 +27,11 @@
     "requires": [
       {
         "id": "socketlib",
+        "type": "module",
+        "compatibility": {}
+      },
+      {
+        "id": "vadanx-common-library",
         "type": "module",
         "compatibility": {}
       }
