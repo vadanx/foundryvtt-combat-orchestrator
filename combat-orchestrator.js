@@ -110,8 +110,11 @@ Hooks.on('vadanx.init', (common) => {
 
   Hooks.once('ready', () => {
     log.debug('Hooked ready')
+    const combatPlaylistName = config.getMenuValue('playlistBgmName')
     music = new common.Music(MODULE.id)
-    music.createPlaylistWithTracks(config.getMenuValue('playlistBgmName'), MODULE.music)
+    music.createPlaylistWithTracks(combatPlaylistName, MODULE.music)
+    const combatPlayLists = music.getPlaylists(combatPlaylistName)
+    music.preloadPlaylists(combatPlayLists)
   })
 
   Hooks.on('getSceneControlButtons', (controls) => {
