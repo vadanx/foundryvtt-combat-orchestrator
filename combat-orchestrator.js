@@ -31,7 +31,8 @@ const MODULE = {
       path: 'modules/vadanx-combat-orchestrator/assets/music/tabletopaudio_92_Skirmish.mp3',
       volume: 0.3
     }
-  ]
+  ],
+  toolclipUrl: 'https://vadanx.github.io/foundryvtt-combat-orchestrator/assets/video/usage.webm'
 }
 
 let config
@@ -130,7 +131,14 @@ Hooks.on('vadanx.init', (common) => {
         toggle: false,
         active: false,
         button: true,
-        onClick: orchestrateCombat
+        onClick: orchestrateCombat,
+        toolclip: {
+          src: MODULE.toolclipUrl,
+          heading: MODULE.name,
+          items: [
+            { paragraph: 'Orchestrating smoother combat encounters.' }
+          ]
+        }
       }
     ]
     controlTools.forEach(c => control.create(controls, c))
