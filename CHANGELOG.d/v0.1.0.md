@@ -6,7 +6,7 @@
 ### Features
 
 * **audio:** Added combat playlist preload to minimize delay of music ([#4](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/4)) ([33c3c13](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/33c3c132754e9c6f13af699070782e03f67906e4))
-* **audio:** Added support for starting last played playlist sounds instead of all sounds ([#10](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/10)) ([04c9ec6](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/04c9ec6719bbc44a8766b758399159bec17206ae))
+* **audio:** Added support for starting last played playlist sounds instead of all sounds ([#10](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/10)) ([414551f](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/414551f06047c39f46b2b7f53c33e530c84d3560))
 
 
 ### Documentation
@@ -16,6 +16,7 @@
 * **bot:** Updated CHANGELOG ([7706cf9](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/7706cf9b33ef2d5a04acd7e8ed31d9f618eb6ba0))
 * Updated README with neater formatting ([#9](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/9)) ([5f1f820](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/5f1f8203e7f737ec61e9428971feb9fe1e471b17))
 * **bot:** Updated CHANGELOG ([71c4aa5](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/71c4aa55752bc608c834a126434b395451b78b7d))
+* **bot:** Updated CHANGELOG ([74364ec](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/74364ec809683e08934db332832ec317235e7dd2))
 
 
 
