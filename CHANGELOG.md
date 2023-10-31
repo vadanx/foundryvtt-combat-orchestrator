@@ -1,14 +1,3 @@
-# v0.1.1
-
-### [0.1.1](https://github.com/vadanx/foundryvtt-combat-orchestrator/compare/v0.1.0...v0.1.1) (2023-10-30)
-
-
-### Documentation
-
-* Updated README with neater formatting ([#9](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/9)) ([5f1f820](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/5f1f8203e7f737ec61e9428971feb9fe1e471b17))
-
-
-
 # v0.1.0
 
 ## [0.1.0](https://github.com/vadanx/foundryvtt-combat-orchestrator/compare/v0.0.1...v0.1.0) (2023-10-30)
