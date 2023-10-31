@@ -32,7 +32,10 @@
       },
       {
         "id": "vadanx-common-library",
-        "type": "module"
+        "type": "module",
+        "compatibility": {
+          "minimum": "0.1.0"
+        }
       }
     ]
   },

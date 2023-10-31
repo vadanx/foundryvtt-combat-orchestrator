@@ -52,7 +52,7 @@ async function orchestrateCombat () {
   const combatBgm = music.getPlaylists(
     config.getMenuValue('playlistBgmName')
   )
-  const previousBgm = music.getPlaylists('current')
+  const previousBgm = music.getPlaylists()
   music.stopPlaylists(previousBgm)
   music.startPlaylists(combatBgm)
   // Initiaitive
