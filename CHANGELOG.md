@@ -1,3 +1,14 @@
+# v0.1.1
+
+### [0.1.1](https://github.com/vadanx/foundryvtt-combat-orchestrator/compare/v0.1.0...v0.1.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* **music:** Fixed bug where module fails to create new combat playlist ([#11](https://github.com/vadanx/foundryvtt-combat-orchestrator/issues/11)) ([d78e0b4](https://github.com/vadanx/foundryvtt-combat-orchestrator/commit/d78e0b424e5d11f9be574df9d61ebdd428f5be1a))
+
+
+
 # v0.1.0
 
 ## [0.1.0](https://github.com/vadanx/foundryvtt-combat-orchestrator/compare/v0.0.1...v0.1.0) (2023-10-31)
