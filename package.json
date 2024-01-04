@@ -2,8 +2,8 @@
   "name": "vadanx-combat-orchestrator",
   "scripts": {
     "lint": "npx eslint '*.js' --fix",
-    "copy": "npm run lint && rsync --archive --compress --delete-excluded --exclude='.git' --exclude='node_modules' --verbose ./ ${HOME}/foundrydata/Data/modules/${npm_package_name}",
-    "test": "npm run copy && node ${HOME}/foundryvtt/resources/app/main.js --dataPath=${HOME}/foundrydata"
+    "copy": "npm run lint && rsync --archive --compress --delete-excluded --exclude='.git' --exclude='node_modules' --verbose ./ ${HOME}/FoundryVTT/foundrydata/Data/modules/${npm_package_name}",
+    "test": "npm run copy && node ${HOME}/FoundryVTT/foundryvtt/resources/app/main.js --dataPath=${HOME}/FoundryVTT/foundrydata"
   },
   "repository": {
     "type": "git",
