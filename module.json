@@ -29,13 +29,6 @@
         "id": "socketlib",
         "type": "module",
         "compatibility": {}
-      },
-      {
-        "id": "vadanx-common-library",
-        "type": "module",
-        "compatibility": {
-          "minimum": "0.1.0"
-        }
       }
     ]
   },
