@@ -9,6 +9,16 @@ const MODULE = {
   menu: {
     combatPopout: {
       name: 'Popout Tabs During Combat',
+      hint: 'Chat and combat tabs popout when starting encounters.',
+      type: Boolean,
+      default: true,
+      scope: 'world',
+      config: true,
+      requiresReload: true
+    },
+    selectActiveToken: {
+      name: 'Select Active Combat Token (PCs)',
+      hint: 'When more than one token is owned by a player, select the token in turn during encounters.',
       type: Boolean,
       default: true,
       scope: 'world',
@@ -17,6 +27,7 @@ const MODULE = {
     },
     playlistBgmName: {
       name: 'Playlist For Background Music',
+      hint: 'Name of the music playlist used during encounters.',
       type: String,
       default: 'Vadanx\'s Combat Orchestrator BGM',
       scope: 'world',
@@ -180,9 +191,8 @@ class Music {
   }
 
   async createPlaylistWithTracks (playlistName, tracks) {
-    if (game.users.get(game.userId)?.isGM) {
+    if (game.user.isGM) {
       const playlists = this.getPlaylists(playlistName)
-      console.log(playlists.length)
       if (playlists.length === 0) {
         console.log(MODULE.name + ' | Creating playlist ' + playlistName)
         await Playlist.create({
@@ -218,7 +228,7 @@ class Time {
     this.id = id
   }
 
-  wait (ms = 1000) {
+  wait (ms = 500) {
     console.log(MODULE.name + ` | Waiting for ${ms} ms`)
     // eslint-disable-next-line promise/param-names
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -255,8 +265,18 @@ async function orchestrateCombat () {
   console.log(MODULE.name + ' | Combat Starting')
   await game.combat?.startCombat()
   let waitCombat = true
+  let combatTurnNew = null
+  let combatTurnOld = null
   while (waitCombat) {
+    combatTurnNew = game.combat?.current.turn
+    if (combatTurnNew !== combatTurnOld) {
+      console.log(MODULE.name + ' | New Combat Turn')
+      if (config.getMenuValue('selectActiveToken')) {
+        socket.executeForEveryone('selectActiveToken')
+      }
+    }
     await time.wait()
+    combatTurnOld = combatTurnNew
     waitCombat = game.combat?.isActive || false
   }
   // Clean Up
@@ -282,6 +302,19 @@ Hooks.once('socketlib.ready', () => {
       ui.sidebar.collapse()
     }
   })
+  socket.register('selectActiveToken', function () {
+    if (!game.user.isGM) {
+      canvas.tokens.placeables.filter(
+        token => token.isOwner && token.id === game.combat.current.tokenId
+      ).forEach(
+        token => token.control(
+          {
+            releaseOthers: true
+          }
+        )
+      )
+    }
+  })
 })
 
 Hooks.on('init', () => {
@@ -298,7 +331,6 @@ Hooks.once('ready', () => {
   music = new Music(MODULE.id)
   music.createPlaylistWithTracks(combatPlaylistName, MODULE.music)
   const combatPlayLists = music.getPlaylists(combatPlaylistName)
-  console.log(combatPlayLists)
   music.preloadPlaylists(combatPlayLists)
 })
 
