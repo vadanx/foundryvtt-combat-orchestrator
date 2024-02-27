@@ -9,6 +9,7 @@ const MODULE = {
   menu: {
     combatPopout: {
       name: 'Popout Tabs During Combat',
+      hint: 'Chat and combat tabs popout when starting encounters.',
       type: Boolean,
       default: true,
       scope: 'world',
@@ -16,7 +17,8 @@ const MODULE = {
       requiresReload: true
     },
     selectActiveToken: {
-      name: 'Select Active Combat Token',
+      name: 'Select Active Combat Token (PCs)',
+      hint: 'When more than one token is owned by a player, select the token in turn during encounters.',
       type: Boolean,
       default: true,
       scope: 'world',
@@ -25,6 +27,7 @@ const MODULE = {
     },
     playlistBgmName: {
       name: 'Playlist For Background Music',
+      hint: 'Name of the music playlist used during encounters.',
       type: String,
       default: 'Vadanx\'s Combat Orchestrator BGM',
       scope: 'world',
@@ -225,7 +228,7 @@ class Time {
     this.id = id
   }
 
-  wait (ms = 200) {
+  wait (ms = 500) {
     console.log(MODULE.name + ` | Waiting for ${ms} ms`)
     // eslint-disable-next-line promise/param-names
     return new Promise(resolve => setTimeout(resolve, ms))
